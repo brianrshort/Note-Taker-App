@@ -131,9 +131,9 @@
             $.post(currentURL + "/api/notes", newNote, 
             function(data) {
                 if(data) {
-                    alert("Your note has been logged!");
+                    console.log("Your note has been logged!");
                 } else {
-                    alert("Hmm, something went wrong...");
+                    console.log("Hmm, something went wrong...");
                 }
 
                 $("#notes-dates").val("");
