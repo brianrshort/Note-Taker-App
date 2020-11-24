@@ -128,7 +128,7 @@
 
             var currentURL = window.location.origin;
 
-            $.post(currentURL + "api/notes", newNote, 
+            $.post(currentURL + "/api/notes", newNote, 
             function(data) {
                 if(data) {
                     alert("Your note has been logged!");
