@@ -10,24 +10,24 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Note-Taking App</title>
 </head>
-<body>
+<body class="bg-success">
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron text-center bg-info">
             <h1 class="text-center">
                 Post-a-Note App
             </h1>
             <hr>
             <h2 class="text-center">A penny for your thoughts...</h2>
-            <br>
+            <a href="/api/notes" style="color: yellow;">API Notes</a>
         </div>
     
         <div class="row mb-5">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                        Your Notes
+                        Your Note
                     </div>
-                <div class="card-body">
+                <div class="card-body bg-light">
                     <form role="form">
                         <div class="form-group">
                             <label for="notes-date">Date</label>
@@ -61,15 +61,6 @@
             </div>
         </div>
 
-
-        <footer class="footer">
-            <div class="container">
-                <p>
-                    <a href="/api/notes">API Notes</a>
-                </p>
-            </div>
-        </footer>
-    </div>
     
 
 
@@ -94,19 +85,33 @@
                 //console.log(notesData);
 
                 for (let i = 0; i < notesData.length; i++) {
+                    let cardDiv = $("<div>");
+                    cardDiv.addClass("card border-primary m-3 p-3 bg-light")
                     let notesDiv = $("<div>");
-                    notesDiv.html(`<h2>${notesData[i].noteDate}</h2><h3>${notesData[i].noteTopic}</h3><p>${notesData[i].noteNote}</p><p><em>${notesData[i].noteID}</em></p>`);
-                    $("#notes-area").append(notesDiv);
+                    notesDiv.addClass("card-body")
+                    notesDiv.html(`<h2 class='card-title'>${notesData[i].noteDate}</h2><h3 class='card-subtitle text-muted'>${notesData[i].noteTopic}</h3><p class='card-text mt-3'>${notesData[i].noteNote}</p>`);
+                    let notesButton = $("<button>");
+                    notesButton.text("Delete")
+                    notesButton.attr("type","button");
+                    notesButton.attr("value", notesData[i].noteID);
+                    notesButton.css("maxWidth", "200px")
+                    notesButton.addClass("notes-click btn btn-danger ml-4");
+                    $("#notes-area").append(cardDiv);
+                    cardDiv.append(notesDiv, notesButton);
                 }
 
-            })
-        }
-
+                $(".notes-click").on("click", function(event) {
+                    let buttonVal = event.target.value; 
+                    console.log(buttonVal);
+                    $.ajax({
+                        url: "api/notes/" + buttonVal,
+                        method: "DELETE"
+                    })
+                });
+            });
+        };        
+            
         runNotesQuery();
-
-
-
-
 
         $(".submit").on("click", function(event) {
             event.preventDefault();
