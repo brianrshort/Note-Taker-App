@@ -10,7 +10,7 @@ This project was completed as part of the Michigan State University/Trilogy Web 
 
 Here's a gif of how the app works:
 
-![Gif of the app](https://brianrshort.github.io/Note-Taker-App/assets/images/app.gif)
+<img src="/assets/Images/App.gif?raw=true" width="400px">
 
 # Tech
 
