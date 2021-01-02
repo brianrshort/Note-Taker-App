@@ -19,6 +19,9 @@ To complete this project, I used Express to create the server, used separate fil
 # Repo
 Link -- https://github.com/brianrshort/Note-Taker-App/
 
+# Deployed Page
+Link -- https://brianrshort.github.io/Note-Taker-App/
+
 # License
 MIT
 
